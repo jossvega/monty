@@ -1,6 +1,15 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -28,7 +37,40 @@ typedef struct stack_s
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number);
+	void (*j)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-#endif /* LISTS_H */
+/**
+ * struct global_variables - all global variables to initialize
+ * @fd: File wil be open
+ * @cline: Counter of lines into file
+ * @buffer: this pointer allocate the data of each line of the file
+ * @stack: Reference to the stack will be added
+ * @head: Reference the head of doubly linked list
+ * Description: keeps all variables expecting for a value
+ */
+typedef struct global_variables
+{
+	FILE *fd;
+	unsigned int count_line;
+	char *buffer;
+	char *stack;
+	stack_t *head;
+} global_t;
+
+extern global_t vars;
+void (*get_operation(char *s))(stack_t **head, unsigned int num_line);
+stack_t *add_dnodeint(stack_t **head, const int n);
+stack_t *add_dnodeint_end(stack_t **head, const int n);
+void free_vars();
+void free_stack(stack_t *head);
+void op_push(stack_t **head, unsigned int num_line);
+void op_pall(stack_t **head, unsigned int num_line);
+void op_pint(stack_t **head, unsigned int num_line);
+void op_pop(stack_t **head, unsigned int num_line);
+void op_add(stack_t **head, unsigned int num_line);
+void op_swap(stack_t **head, unsigned int num_line);
+void op_nop(stack_t **head, unsigned int num_line);
+FILE *open_valid(int argc, char **argv);
+void init(FILE *fd);
+#endif /* #ifndef MONTY_H */
