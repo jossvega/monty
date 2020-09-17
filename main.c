@@ -41,4 +41,5 @@ int main(int argc, char **argv)
 
 	free_vars();
 	return (0);
+	exit(EXIT_SUCCESS);
 }
