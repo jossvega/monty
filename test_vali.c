@@ -13,6 +13,7 @@ void init(FILE *fd)
 	vars.count_line = 1;
 	vars.buffer = NULL;
 	vars.stack = NULL;
+	vars.head = NULL;
 }
 
 /**
