@@ -15,6 +15,8 @@ void (*get_operation(char *s))(stack_t **head, unsigned int num_line)
 		{"pop", op_pop},
 		{"add", op_add},
 		{"nop", op_nop},
+		{"queue", stack_queue},
+		{"stack", order_stack},
 		{NULL, NULL}
 	};
 

@@ -30,8 +30,10 @@ void op_push(stack_t **head, unsigned int num_line)
 		x++;
 	}
 	number = atoi(vars.stack);
-
-	add_dnodeint(head, number);
+	if (vars.order == 1)
+		add_dnodeint(head, number);
+	else
+		add_dnodeint_end(head, number);
 }
 
 /**

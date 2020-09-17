@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * add_dnodeint - add a node into a doubly linked list
  * @head: Pointer to the reference of first node
@@ -9,19 +8,23 @@
 stack_t *add_dnodeint(stack_t **head, const int n)
 {
 	stack_t *new;
-	stack_t *tmp = *head;
 
+	if (head == NULL)
+		return (NULL);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
-		return (NULL);
+	{
+		dprintf(2, "Error: malloc failed\n");
+		free_vars();
+		exit(EXIT_FAILURE);
+	}
 	new->n = n;
-	new->prev = NULL;
 	new->next = *head;
-
-	if (*head != NULL)
-		tmp->prev = new;
+	new->prev = NULL;
+	if (*head)
+		(*head)->prev = new;
 	*head = new;
-	return (*head);
+	return (new);
 }
 
 /**
@@ -32,22 +35,29 @@ stack_t *add_dnodeint(stack_t **head, const int n)
  */
 stack_t *add_dnodeint_end(stack_t **head, const int n)
 {
-	stack_t *tmp = *head;
-	stack_t *new;
+	stack_t *new, *tmp;
 
+	if (head == NULL)
+		return (NULL);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
-		return (NULL);
-	new->n = n;
-	new->next = NULL;
-	if (*head == NULL)
 	{
+		dprintf(2, "Error: malloc failed\n");
+		free_vars();
+		exit(EXIT_FAILURE);
+	}
+	new->n = n;
+	if (!(*head))
+	{
+		new->next = *head;
 		new->prev = NULL;
 		*head = new;
-		return (*head);
+		return (new);
 	}
-	while (tmp->next != NULL)
+	tmp = *head;
+	while (tmp->next)
 		tmp = tmp->next;
+	new->next = NULL;
 	new->prev = tmp;
 	tmp->next = new;
 	return (new);

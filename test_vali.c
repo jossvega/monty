@@ -8,6 +8,7 @@
  */
 void init(FILE *fd)
 {
+	vars.order = 1;
 	vars.fd = fd;
 	vars.count_line = 1;
 	vars.buffer = NULL;

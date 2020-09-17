@@ -42,6 +42,7 @@ typedef struct instruction_s
 
 /**
  * struct global_variables - all global variables to initialize
+ * @order: Stablish the order of the stack, when is a queue or stack
  * @fd: File wil be open
  * @cline: Counter of lines into file
  * @buffer: this pointer allocate the data of each line of the file
@@ -52,6 +53,7 @@ typedef struct instruction_s
 typedef struct global_variables
 {
 	FILE *fd;
+	int order;
 	unsigned int count_line;
 	char *buffer;
 	char *stack;
@@ -62,7 +64,7 @@ extern global_t vars;
 void (*get_operation(char *s))(stack_t **head, unsigned int num_line);
 stack_t *add_dnodeint(stack_t **head, const int n);
 stack_t *add_dnodeint_end(stack_t **head, const int n);
-void free_vars();
+void free_vars(void);
 void free_stack(stack_t *head);
 void op_push(stack_t **head, unsigned int num_line);
 void op_pall(stack_t **head, unsigned int num_line);
@@ -73,4 +75,7 @@ void op_swap(stack_t **head, unsigned int num_line);
 void op_nop(stack_t **head, unsigned int num_line);
 FILE *open_valid(int argc, char **argv);
 void init(FILE *fd);
+void stack_queue(stack_t **head, unsigned int num_line);
+void order_stack(stack_t **head, unsigned int num_line);
+
 #endif /* #ifndef MONTY_H */
