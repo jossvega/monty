@@ -44,20 +44,17 @@ void op_mul(stack_t **head, unsigned int num_line)
 	int nel = 0;
 
 	tmp = *head;
-	while (tmp)
-	{
-		nel++;
-		tmp = tmp->next;
-	}
-	if (nel < 2)
+
+	if (!head || !(*head) || !(*head)->next)
 	{
 		dprintf(2, "L%u: can't mul, stack too short\n", num_line);
 		free_vars();
 		exit(EXIT_FAILURE);
 	}
-	tmp = (*head)->next;
-	tmp->n *= (*head)->n;
-	op_pop(head, num_line);
+	nel = tmp->next->n * tmp->n;
+	*head = (*head)->next;
+	(*head)->n = nel;
+	free(tmp);
 }
 
 /**
