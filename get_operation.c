@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * get_opcode_func - get the option of char input to perform the opcode
+ * get_operation - get the option of char input to perform the opcode
  * @s: input opcode
  * Return: a pointer to the function given the opcode or NULL if not found
  */
@@ -17,6 +17,11 @@ void (*get_operation(char *s))(stack_t **head, unsigned int num_line)
 		{"nop", op_nop},
 		{"queue", stack_queue},
 		{"stack", order_stack},
+		{"div", op_div},
+		{"mul", op_mul},
+		{"mod", op_mod},
+		{"pchar", op_pchar},
+		{"pstr", op_pstr},
 		{NULL, NULL}
 	};
 

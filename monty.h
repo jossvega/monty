@@ -77,5 +77,10 @@ FILE *open_valid(int argc, char **argv);
 void init(FILE *fd);
 void stack_queue(stack_t **head, unsigned int num_line);
 void order_stack(stack_t **head, unsigned int num_line);
+void op_div(stack_t **head, unsigned int num_line);
+void op_mul(stack_t **head, unsigned int num_line);
+void op_mod(stack_t **head, unsigned int num_line);
+void op_pchar(stack_t **head, unsigned int num_line);
+void op_pstr(stack_t **head, unsigned int num_line);
 
 #endif /* #ifndef MONTY_H */

@@ -1,4 +1,5 @@
 #include "monty.h"
+
 global_t vars;
 /**
  * main - this function evaluates the input to execute the

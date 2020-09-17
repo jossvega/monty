@@ -54,10 +54,11 @@ void stack_queue(stack_t **head, unsigned int num_line)
 /**
  * order_stack - sets the format fo the data to a LIFO stack
  * @head: Reference to the head of doubly linked list
- * @line_num: Reference to the line we are checking in case of an error
+ * @num_line: Reference to the line we are checking in case of an error
  */
 void order_stack(stack_t **head, unsigned int num_line)
 {
+
 	(void)head;
 	(void)num_line;
 
